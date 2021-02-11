@@ -6,6 +6,8 @@ class AVLNode
 public:
     AVLNode(int);
     int getValue() const;
+    void setHeight(int);
+    int getHeight() const;
     void setRightChild(AVLNode *);
     void setLeftChild(AVLNode *);
     AVLNode *getRightChild() const;
@@ -13,6 +15,7 @@ public:
 
 private:
     int value;
+    int height;
     AVLNode *rightChild;
     AVLNode *leftChild;
 };

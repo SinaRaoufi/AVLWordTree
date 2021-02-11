@@ -6,6 +6,7 @@ using namespace std;
 AVLNode::AVLNode(int value)
 {
     this->value = value;
+    height = 0;
     rightChild = nullptr;
     leftChild = nullptr;
 }
@@ -13,6 +14,16 @@ AVLNode::AVLNode(int value)
 int AVLNode::getValue() const
 {
     return value;
+}
+
+void AVLNode::setHeight(int height)
+{
+    this->height = height;
+}
+
+int AVLNode::getHeight() const
+{
+    return height;
 }
 
 AVLNode *AVLNode::getRightChild() const
