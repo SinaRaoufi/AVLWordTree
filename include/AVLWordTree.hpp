@@ -30,6 +30,7 @@ private:
     AVLNode *root = nullptr;
     AVLNode *insert(AVLNode *, int);
     void traverseInOrder(AVLNode *) const;
+    int heightOfAVLNode(AVLNode *) const;
 };
 
 #endif

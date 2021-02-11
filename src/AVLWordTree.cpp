@@ -53,13 +53,20 @@ void AVLWordTree::insert(int value)
 
 AVLNode *AVLWordTree::insert(AVLNode *root, int value)
 {
+    //   10
+    //      20
+    //         30
     if (root == nullptr)
         return new AVLNode(value);
 
     if (value < root->getValue())
         root->setLeftChild(insert(root->getLeftChild(), value));
-    else
+    else if (value > root->getValue())
         root->setRightChild(insert(root->getRightChild(), value));
+
+    root->setHeight(max(heightOfAVLNode(root->getLeftChild()),
+                        heightOfAVLNode(root->getRightChild())) +
+                    1);
 
     return root;
 }
@@ -78,4 +85,9 @@ void AVLWordTree::traverseInOrder(AVLNode *root) const
     traverseInOrder(root->getLeftChild());
     cout << root->getValue() << ' ';
     traverseInOrder(root->getRightChild());
+}
+
+int AVLWordTree::heightOfAVLNode(AVLNode *node) const
+{
+    return node == nullptr ? -1 : node->getHeight();
 }
