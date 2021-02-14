@@ -53,9 +53,6 @@ void AVLWordTree::insert(int value)
 
 AVLNode *AVLWordTree::insert(AVLNode *root, int value)
 {
-    //   10
-    //      20
-    //         30
     if (root == nullptr)
         return new AVLNode(value);
 
@@ -67,8 +64,79 @@ AVLNode *AVLWordTree::insert(AVLNode *root, int value)
     root->setHeight(max(heightOfAVLNode(root->getLeftChild()),
                         heightOfAVLNode(root->getRightChild())) +
                     1);
+    root = balance(root);
 
     return root;
+}
+
+AVLNode *AVLWordTree::balance(AVLNode *root)
+{
+    int balancedFactor = balanceFactor(root);
+
+    if (balancedFactor > 1) // left heavy tree
+    {
+        if (balanceFactor(root->getLeftChild()) > 0)
+        {
+            root = rightRotation(root);
+        }
+        else
+        {
+            root->setLeftChild(leftRotation(root->getLeftChild()));
+            root = rightRotation(root);
+        }
+    }
+    else if (balancedFactor < -1) // right heavy tree
+    {
+        if (balanceFactor(root->getRightChild()) > 0)
+        {
+            root->setRightChild(rightRotation(root->getRightChild()));
+            root = leftRotation(root);
+        }
+        else
+        {
+            root = leftRotation(root);
+        }
+    }
+    return root;
+}
+
+AVLNode *AVLWordTree::leftRotation(AVLNode *root)
+{
+    AVLNode *newRoot = root->getRightChild();
+    root->setRightChild(newRoot->getLeftChild());
+
+    root->setHeight(max(heightOfAVLNode(root->getLeftChild()),
+                        heightOfAVLNode(root->getRightChild())) +
+                    1);
+    newRoot->setLeftChild(root);
+
+    newRoot->setHeight(max(heightOfAVLNode(newRoot->getLeftChild()),
+                           heightOfAVLNode(newRoot->getRightChild())) +
+                       1);
+    return newRoot;
+}
+
+AVLNode *AVLWordTree::rightRotation(AVLNode *root)
+{
+    AVLNode *newRoot = root->getLeftChild();
+    root->setLeftChild(newRoot->getRightChild());
+
+    root->setHeight(max(heightOfAVLNode(root->getLeftChild()),
+                        heightOfAVLNode(root->getRightChild())) +
+                    1);
+    newRoot->setRightChild(root);
+
+    newRoot->setHeight(max(heightOfAVLNode(newRoot->getLeftChild()),
+                           heightOfAVLNode(newRoot->getRightChild())) +
+                       1);
+    return newRoot;
+}
+
+int AVLWordTree::balanceFactor(AVLNode *root) const
+{
+    return root == nullptr
+               ? 0
+               : heightOfAVLNode(root->getLeftChild()) - heightOfAVLNode(root->getRightChild());
 }
 
 void AVLWordTree::traverseInOrder() const

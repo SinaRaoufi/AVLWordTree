@@ -31,6 +31,10 @@ private:
     AVLNode *insert(AVLNode *, int);
     void traverseInOrder(AVLNode *) const;
     int heightOfAVLNode(AVLNode *) const;
+    int balanceFactor(AVLNode *) const;
+    AVLNode *balance(AVLNode *);
+    AVLNode *rightRotation(AVLNode *);
+    AVLNode *leftRotation(AVLNode *);
 };
 
 #endif
