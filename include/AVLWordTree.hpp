@@ -24,13 +24,17 @@ class AVLWordTree
 {
 public:
     void insert(int);
+    void traversePreOrder() const;
     void traverseInOrder() const;
+    void traversePostOrder() const;
     bool isEmpty() const;
 
 private:
     AVLNode *root = nullptr;
     AVLNode *insert(AVLNode *, int);
+    void traversePreOrder(AVLNode *) const;
     void traverseInOrder(AVLNode *) const;
+    void traversePostOrder(AVLNode *) const;
     int heightOfAVLNode(AVLNode *) const;
     int balanceFactor(AVLNode *) const;
     AVLNode *balance(AVLNode *);

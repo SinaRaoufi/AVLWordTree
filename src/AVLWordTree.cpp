@@ -139,6 +139,22 @@ int AVLWordTree::balanceFactor(AVLNode *root) const
                : heightOfAVLNode(root->getLeftChild()) - heightOfAVLNode(root->getRightChild());
 }
 
+void AVLWordTree::traversePreOrder() const
+{
+    traversePreOrder(root);
+    cout << endl;
+}
+
+void AVLWordTree::traversePreOrder(AVLNode *root) const
+{
+    // root left right
+    if (root == nullptr)
+        return;
+    cout << root->getValue() << ' ';
+    traversePreOrder(root->getLeftChild());
+    traversePreOrder(root->getRightChild());
+}
+
 void AVLWordTree::traverseInOrder() const
 {
     traverseInOrder(root);
@@ -153,6 +169,22 @@ void AVLWordTree::traverseInOrder(AVLNode *root) const
     traverseInOrder(root->getLeftChild());
     cout << root->getValue() << ' ';
     traverseInOrder(root->getRightChild());
+}
+
+void AVLWordTree::traversePostOrder() const
+{
+    traversePostOrder(root);
+    cout << endl;
+}
+
+void AVLWordTree::traversePostOrder(AVLNode *root) const
+{
+    // left right root
+    if (root == nullptr)
+        return;
+    traversePostOrder(root->getLeftChild());
+    traversePostOrder(root->getRightChild());
+    cout << root->getValue() << ' ';
 }
 
 int AVLWordTree::heightOfAVLNode(AVLNode *node) const
