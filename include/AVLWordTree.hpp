@@ -25,6 +25,7 @@ class AVLWordTree
 public:
     void insert(int);
     void traverseInOrder() const;
+    bool isEmpty() const;
 
 private:
     AVLNode *root = nullptr;

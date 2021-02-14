@@ -159,3 +159,8 @@ int AVLWordTree::heightOfAVLNode(AVLNode *node) const
 {
     return node == nullptr ? -1 : node->getHeight();
 }
+
+bool AVLWordTree::isEmpty() const
+{
+    return root == nullptr ? true : false;
+}
