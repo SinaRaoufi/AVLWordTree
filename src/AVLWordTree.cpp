@@ -1,5 +1,6 @@
 #include "AVLWordTree.hpp"
 #include <iostream>
+#include <queue>
 
 using namespace std;
 
@@ -206,12 +207,17 @@ void AVLWordTree::traverseLevelOrder() const
 
 void AVLWordTree::traverseLevelOrder(AVLNode *root) const
 {
-    // left root right
-    if (root == nullptr)
-        return;
-    traverseLevelOrder(root->getLeftChild());
-    cout << root->getValue() << ' ';
-    traverseLevelOrder(root->getRightChild());
+    queue<AVLNode *> values;
+    values.push(root);
+    while (!values.empty())
+    {
+        if (values.front()->getLeftChild() != nullptr)
+            values.push(values.front()->getLeftChild());
+        if (values.front()->getRightChild() != nullptr)
+            values.push(values.front()->getRightChild());
+        cout << values.front()->getValue() << ' ';
+        values.pop();
+    }
 }
 
 int AVLWordTree::heightOfAVLNode(AVLNode *node) const
@@ -238,3 +244,13 @@ bool AVLWordTree::search(string value) const
     }
     return false;
 }
+
+// AVLWordTree::~AVLWordTree()
+// {
+//     // left right root
+//     if (root == nullptr)
+//         return;
+//     traversePostOrder(root->getLeftChild());
+//     traversePostOrder(root->getRightChild());
+//     delete root;
+// }
