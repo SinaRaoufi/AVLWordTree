@@ -3,7 +3,7 @@
 
 using namespace std;
 
-AVLNode::AVLNode(int value)
+AVLNode::AVLNode(string value)
 {
     this->value = value;
     height = 0;
@@ -11,7 +11,7 @@ AVLNode::AVLNode(int value)
     leftChild = nullptr;
 }
 
-int AVLNode::getValue() const
+string AVLNode::getValue() const
 {
     return value;
 }
@@ -46,19 +46,30 @@ void AVLNode::setLeftChild(AVLNode *leftChild)
     this->leftChild = leftChild;
 }
 
-void AVLWordTree::insert(int value)
+int AVLWordTree::compareTwoString(std::string str1, std::string str2) const
+{
+    int result = str1.compare(str2);
+    if (result == 0) // 0 if str1 and str2 are equal
+        return 0;
+    else if (result > 0) // 1 if str1 is greater than str2
+        return 1;
+    else // -1 if str1 is lower than str2
+        return -1;
+}
+
+void AVLWordTree::insert(string value)
 {
     root = insert(root, value);
 }
 
-AVLNode *AVLWordTree::insert(AVLNode *root, int value)
+AVLNode *AVLWordTree::insert(AVLNode *root, string value)
 {
     if (root == nullptr)
         return new AVLNode(value);
 
-    if (value < root->getValue())
+    if (compareTwoString(value, root->getValue()) == -1)
         root->setLeftChild(insert(root->getLeftChild(), value));
-    else if (value > root->getValue())
+    else if (compareTwoString(value, root->getValue()) == 1)
         root->setRightChild(insert(root->getRightChild(), value));
 
     root->setHeight(max(heightOfAVLNode(root->getLeftChild()),
@@ -185,6 +196,22 @@ void AVLWordTree::traversePostOrder(AVLNode *root) const
     traversePostOrder(root->getLeftChild());
     traversePostOrder(root->getRightChild());
     cout << root->getValue() << ' ';
+}
+
+void AVLWordTree::traverseLevelOrder() const
+{
+    traverseLevelOrder(root);
+    cout << endl;
+}
+
+void AVLWordTree::traverseLevelOrder(AVLNode *root) const
+{
+    // left root right
+    if (root == nullptr)
+        return;
+    traverseLevelOrder(root->getLeftChild());
+    cout << root->getValue() << ' ';
+    traverseLevelOrder(root->getRightChild());
 }
 
 int AVLWordTree::heightOfAVLNode(AVLNode *node) const
