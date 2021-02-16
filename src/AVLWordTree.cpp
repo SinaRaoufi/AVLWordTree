@@ -223,3 +223,18 @@ bool AVLWordTree::isEmpty() const
 {
     return root == nullptr ? true : false;
 }
+
+bool AVLWordTree::search(string value) const
+{
+    auto current = root;
+    while (current != nullptr)
+    {
+        if (compareTwoString(value, current->getValue()) == -1)
+            current = current->getLeftChild();
+        else if (compareTwoString(value, current->getValue()) == 1)
+            current = current->getRightChild();
+        else
+            return true;
+    }
+    return false;
+}

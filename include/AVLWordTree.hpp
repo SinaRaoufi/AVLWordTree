@@ -26,6 +26,7 @@ class AVLWordTree
 {
 public:
     void insert(std::string);
+    bool search(std::string) const;
     void traversePreOrder() const;
     void traverseInOrder() const;
     void traversePostOrder() const;
