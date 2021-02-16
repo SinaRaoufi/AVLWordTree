@@ -30,6 +30,7 @@ public:
     bool search(std::string) const;
     std::vector<std::string> start_with(const char &) const;
     std::vector<std::string> end_with(const char &) const;
+    std::vector<std::string> contains(const std::string &) const;
     void traversePreOrder() const;
     void traverseInOrder() const;
     void traversePostOrder() const;

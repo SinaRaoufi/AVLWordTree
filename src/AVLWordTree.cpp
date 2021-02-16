@@ -282,6 +282,27 @@ vector<string> AVLWordTree::end_with(const char &character) const
     return temp;
 }
 
+vector<string> AVLWordTree::contains(const string &subString) const
+{
+    vector<string> temp;
+    queue<AVLNode *> values;
+
+    values.push(root);
+    while (!values.empty())
+    {
+        if (values.front()->getLeftChild() != nullptr)
+            values.push(values.front()->getLeftChild());
+        if (values.front()->getRightChild() != nullptr)
+            values.push(values.front()->getRightChild());
+
+        if (values.front()->getValue().find(subString) != string::npos)
+            temp.push_back(values.front()->getValue());
+
+        values.pop();
+    }
+    return temp;
+}
+
 AVLWordTree::~AVLWordTree()
 {
     queue<AVLNode *> values;
