@@ -240,12 +240,17 @@ bool AVLWordTree::search(string value) const
     return false;
 }
 
-// AVLWordTree::~AVLWordTree()
-// {
-//     // left right root
-//     if (root == nullptr)
-//         return;
-//     traversePostOrder(root->getLeftChild());
-//     traversePostOrder(root->getRightChild());
-//     delete root;
-// }
+AVLWordTree::~AVLWordTree()
+{
+    queue<AVLNode *> values;
+    values.push(root);
+    while (!values.empty())
+    {
+        if (values.front()->getLeftChild() != nullptr)
+            values.push(values.front()->getLeftChild());
+        if (values.front()->getRightChild() != nullptr)
+            values.push(values.front()->getRightChild());
+        delete values.front();
+        values.pop();
+    }
+}

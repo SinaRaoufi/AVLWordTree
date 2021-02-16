@@ -33,7 +33,7 @@ public:
     void traverseLevelOrder() const;
     bool isEmpty() const;
     int compareTwoString(std::string, std::string) const;
-    // ~AVLWordTree();
+    ~AVLWordTree();
 
 private:
     AVLNode *root = nullptr;
