@@ -201,12 +201,6 @@ void AVLWordTree::traversePostOrder(AVLNode *root) const
 
 void AVLWordTree::traverseLevelOrder() const
 {
-    traverseLevelOrder(root);
-    cout << endl;
-}
-
-void AVLWordTree::traverseLevelOrder(AVLNode *root) const
-{
     queue<AVLNode *> values;
     values.push(root);
     while (!values.empty())
@@ -218,6 +212,7 @@ void AVLWordTree::traverseLevelOrder(AVLNode *root) const
         cout << values.front()->getValue() << ' ';
         values.pop();
     }
+    cout << endl;
 }
 
 int AVLWordTree::heightOfAVLNode(AVLNode *node) const

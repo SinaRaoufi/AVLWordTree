@@ -41,7 +41,6 @@ private:
     void traversePreOrder(AVLNode *) const;
     void traverseInOrder(AVLNode *) const;
     void traversePostOrder(AVLNode *) const;
-    void traverseLevelOrder(AVLNode *) const;
     int heightOfAVLNode(AVLNode *) const;
     int balanceFactor(AVLNode *) const;
     AVLNode *balance(AVLNode *);
