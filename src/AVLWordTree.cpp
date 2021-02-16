@@ -225,7 +225,7 @@ bool AVLWordTree::isEmpty() const
     return root == nullptr ? true : false;
 }
 
-bool AVLWordTree::search(string value) const
+bool AVLWordTree::search(const string &value) const
 {
     auto current = root;
     while (current != nullptr)
