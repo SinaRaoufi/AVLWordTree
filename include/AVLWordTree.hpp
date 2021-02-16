@@ -36,7 +36,7 @@ public:
     void traversePostOrder() const;
     void traverseLevelOrder() const;
     bool isEmpty() const;
-    int compareTwoString(std::string, std::string) const;
+    int compareTwoString(const std::string &, const std::string &) const;
     ~AVLWordTree();
 
 private:

@@ -47,7 +47,7 @@ void AVLNode::setLeftChild(AVLNode *leftChild)
     this->leftChild = leftChild;
 }
 
-int AVLWordTree::compareTwoString(std::string str1, std::string str2) const
+int AVLWordTree::compareTwoString(const std::string &str1, const std::string &str2) const
 {
     int result = str1.compare(str2);
     if (result == 0) // 0 if str1 and str2 are equal
