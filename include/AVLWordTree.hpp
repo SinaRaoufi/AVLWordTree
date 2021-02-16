@@ -2,6 +2,7 @@
 #define AVL_WORD_TREE_IG
 
 #include <string>
+#include <vector>
 
 class AVLNode
 {
@@ -27,6 +28,8 @@ class AVLWordTree
 public:
     void insert(std::string);
     bool search(std::string) const;
+    std::vector<std::string> start_with(const char &) const;
+    std::vector<std::string> end_with(const char &) const;
     void traversePreOrder() const;
     void traverseInOrder() const;
     void traversePostOrder() const;
