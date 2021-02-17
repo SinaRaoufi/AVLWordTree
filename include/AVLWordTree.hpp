@@ -7,7 +7,7 @@
 class AVLNode
 {
 public:
-    AVLNode(std::string);
+    explicit AVLNode(const std::string &);
     void setValue(const std::string &);
     std::string getValue() const;
     void setHeight(int);

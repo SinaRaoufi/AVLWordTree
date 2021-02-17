@@ -5,7 +5,7 @@
 using namespace std;
 
 // AVLNode class constructor
-AVLNode::AVLNode(string value)
+AVLNode::AVLNode(const string &value)
 {
     setValue(value);
     height = 0;
