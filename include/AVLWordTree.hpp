@@ -8,6 +8,7 @@ class AVLNode
 {
 public:
     AVLNode(std::string);
+    void setValue(const std::string &);
     std::string getValue() const;
     void setHeight(int);
     int getHeight() const;
@@ -28,6 +29,7 @@ class AVLWordTree
 public:
     void insert(std::string);
     bool search(const std::string &) const;
+    void remove(const std::string &);
     std::vector<std::string> start_with(const char &) const;
     std::vector<std::string> end_with(const char &) const;
     std::vector<std::string> contains(const std::string &) const;
@@ -42,6 +44,8 @@ public:
 private:
     AVLNode *root = nullptr;
     AVLNode *insert(AVLNode *, std::string);
+    AVLNode *remove(AVLNode *, const std::string &);
+    AVLNode *minNode(AVLNode *);
     void traversePreOrder(AVLNode *) const;
     void traverseInOrder(AVLNode *) const;
     void traversePostOrder(AVLNode *) const;

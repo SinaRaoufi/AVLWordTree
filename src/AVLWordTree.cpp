@@ -12,6 +12,11 @@ AVLNode::AVLNode(string value)
     leftChild = nullptr;
 }
 
+void AVLNode::setValue(const string &value)
+{
+    this->value = value;
+}
+
 string AVLNode::getValue() const
 {
     return value;
@@ -316,4 +321,72 @@ AVLWordTree::~AVLWordTree()
         delete values.front();
         values.pop();
     }
+}
+
+// find left most node of binary search tree
+AVLNode *AVLWordTree::minNode(AVLNode *root)
+{
+    auto current = root;
+    auto leftMostNode = root;
+    while (current != nullptr)
+    {
+        leftMostNode = current;
+        current = current->getLeftChild();
+    }
+    return leftMostNode;
+}
+
+// delete a node from desired binary search tree
+AVLNode *AVLWordTree::remove(AVLNode *root, const string &value)
+{
+    // base condition
+    if (root == nullptr)
+        return root;
+
+    if (compareTwoString(value, root->getValue()) == -1)
+    {
+        root->setLeftChild(remove(root->getLeftChild(), value));
+        root->setHeight(max(heightOfAVLNode(root->getLeftChild()),
+                            heightOfAVLNode(root->getRightChild())) +
+                        1);
+        root = balance(root);
+    }
+    else if (compareTwoString(value, root->getValue()) == 1)
+    {
+        root->setRightChild(remove(root->getRightChild(), value));
+        root->setHeight(max(heightOfAVLNode(root->getLeftChild()),
+                            heightOfAVLNode(root->getRightChild())) +
+                        1);
+        root = balance(root);
+    }
+    else
+    {
+        if (root->getLeftChild() == nullptr)
+        {
+            auto temp = root->getRightChild();
+            delete root;
+            return temp;
+        }
+        else if (root->getRightChild() == nullptr)
+        {
+            auto temp = root->getLeftChild();
+            delete root;
+            return temp;
+        }
+        else
+        {
+            // find minimum value of right subtree
+            AVLNode *min = minNode(root->getRightChild());
+            // replace desired node with minimum value of right subtree
+            root->setValue(min->getValue());
+            // delete duplicated node
+            root->setRightChild(remove(root->getRightChild(), min->getValue()));
+        }
+    }
+    return root;
+}
+
+void AVLWordTree::remove(const string &value)
+{
+    root = remove(root, value);
 }
