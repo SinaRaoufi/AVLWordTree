@@ -38,7 +38,6 @@ public:
     void traversePostOrder() const;
     void traverseLevelOrder() const;
     bool isEmpty() const;
-    int compareTwoString(const std::string &, const std::string &) const;
     ~AVLWordTree();
 
 private:
@@ -46,6 +45,7 @@ private:
     AVLNode *insert(AVLNode *, std::string);
     AVLNode *remove(AVLNode *, const std::string &);
     AVLNode *minNode(AVLNode *);
+    int compareTwoString(const std::string &, const std::string &) const;
     void traversePreOrder(AVLNode *) const;
     void traverseInOrder(AVLNode *) const;
     void traversePostOrder(AVLNode *) const;
