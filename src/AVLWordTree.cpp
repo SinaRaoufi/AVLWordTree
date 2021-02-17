@@ -7,7 +7,7 @@ using namespace std;
 // AVLNode class constructor
 AVLNode::AVLNode(string value)
 {
-    this->value = value;
+    setValue(value);
     height = 0;
     rightChild = nullptr;
     leftChild = nullptr;
