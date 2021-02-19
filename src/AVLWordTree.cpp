@@ -109,27 +109,15 @@ AVLNode *AVLWordTree::balance(AVLNode *root)
 
     if (balancedFactor > 1) // left heavy tree
     {
-        if (balanceFactor(root->getLeftChild()) > 0)
-        {
-            root = rightRotation(root);
-        }
-        else
-        {
+        if (balanceFactor(root->getLeftChild()) < 0)
             root->setLeftChild(leftRotation(root->getLeftChild()));
-            root = rightRotation(root);
-        }
+        root = rightRotation(root);
     }
     else if (balancedFactor < -1) // right heavy tree
     {
         if (balanceFactor(root->getRightChild()) > 0)
-        {
             root->setRightChild(rightRotation(root->getRightChild()));
-            root = leftRotation(root);
-        }
-        else
-        {
-            root = leftRotation(root);
-        }
+        root = leftRotation(root);
     }
     return root;
 }
@@ -248,7 +236,7 @@ void AVLWordTree::traverseLevelOrder() const
     cout << endl;
 }
 
-// utility member function: traverse tree with Level-Order traversal method
+// utility member function: calculate height of the desired node
 int AVLWordTree::heightOfAVLNode(AVLNode *node) const
 {
     return node == nullptr ? -1 : node->getHeight();
