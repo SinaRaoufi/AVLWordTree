@@ -13,7 +13,11 @@ Traversal | O(n) | O(n)
 Clear | O(n) | O(n)
 
 ## Self balancing 
-Whenever the balance factor is not -1 or 0 or 1, the AVL tree balances itself. 
+Whenever the balance factor of a node is not -1 or 0 or 1, the AVL tree balances itself.The balance factor of each node is calculated as follows:
+```
+height of left child - height of right child
+```
+
 Self balancing is done in the following ways:
 - Left rotation
 - Right rotation
