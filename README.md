@@ -8,3 +8,8 @@ Operation | Average | Worst Case
 Insert | O(log n) | O(log n)
 Delete | O(log n) | O(log n)
 Search | O(log n) | O(log n)
+Search By Filters | O(n) | O(n)
+Clear | O(n) | O(n)
+
+## Self balancing 
+![result](https://upload.wikimedia.org/wikipedia/commons/f/fd/AVL_Tree_Example.gif)
