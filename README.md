@@ -14,7 +14,7 @@ Clear | O(n) | O(n)
 
 ## Self balancing 
 Whenever the balance factor is not -1 or 0 or 1, the AVL tree balances itself. 
-Rotation is done in the following ways:
+Self balancing is done in the following ways:
 - Left rotation
 - Right rotation
 - Right-Left rotation
