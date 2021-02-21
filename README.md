@@ -9,6 +9,7 @@ Insert | O(log n) | O(log n)
 Delete | O(log n) | O(log n)
 Search | O(log n) | O(log n)
 Search By Filters | O(n) | O(n)
+Traversal | O(n) | O(n)
 Clear | O(n) | O(n)
 
 ## Self balancing 
