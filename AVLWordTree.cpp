@@ -221,6 +221,8 @@ void AVLWordTree::traversePostOrder(AVLNode *root) const
 // traverse tree with Level-Order traversal method
 void AVLWordTree::traverseLevelOrder() const
 {
+    if (isEmpty())
+        return;
     queue<AVLNode *> values;
     values.push(root);
     while (!values.empty())
@@ -423,4 +425,24 @@ AVLNode *AVLWordTree::remove(AVLNode *root, const string &value)
 void AVLWordTree::remove(const string &value)
 {
     root = remove(root, value);
+}
+
+// delete the tree
+void AVLWordTree::clear()
+{
+    if (isEmpty()) // check if avl tree is empty or not
+        return;
+    queue<AVLNode *> values;
+    values.push(root);
+    while (!values.empty())
+    {
+        // push right child and left child of desired node if they aren't nullptr
+        if (values.front()->getLeftChild() != nullptr)
+            values.push(values.front()->getLeftChild());
+        if (values.front()->getRightChild() != nullptr)
+            values.push(values.front()->getRightChild());
+        delete values.front();
+        values.pop();
+    }
+    root = nullptr;
 }

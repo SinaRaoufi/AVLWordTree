@@ -38,6 +38,7 @@ public:
     void traversePostOrder() const;
     void traverseLevelOrder() const;
     bool isEmpty() const;
+    void clear();
     ~AVLWordTree();
 
 private:
